@@ -1,0 +1,15 @@
+# Node artifact files
+node_modules/
+lib/
+
+# NYC
+coverage/
+.nyc_output/
+
+# Typescript-Coverage-Report
+coverage-ts/
+
+# VSCode
+.vscode
+.env
+
