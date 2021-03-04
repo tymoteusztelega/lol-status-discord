@@ -14,9 +14,11 @@
     "lint": "eslint 'src/**/*.ts' --quiet --fix"
   },
   "dependencies": {
+    "@types/express": "^4.17.11",
     "axios": "^0.21.1",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "moment": "^2.29.1",
     "ts-node": "^9.1.1"
   },
