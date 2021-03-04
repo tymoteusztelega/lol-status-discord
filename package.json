@@ -4,10 +4,21 @@
   "description": "Discord bot that informs about League of Legend user status",
   "main": "lib/index.js",
   "types": "lib/index.d.js",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "build": "tsc",
+    "start": "ts-node src/index.ts",
     "start:dev": "nodemon --exec ts-node src/index.ts",
     "lint": "eslint 'src/**/*.ts' --quiet --fix"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "moment": "^2.29.1",
+    "ts-node": "^9.1.1"
   },
   "keywords": [],
   "author": "Tymoteusz Telega",
@@ -23,12 +34,5 @@
     "prettier": "^2.2.1",
     "simple-fp-ts": "^1.0.0",
     "typescript": "^4.1.5"
-  },
-  "dependencies": {
-    "axios": "^0.21.1",
-    "discord.js": "^12.5.1",
-    "dotenv": "^8.2.0",
-    "moment": "^2.29.1",
-    "ts-node": "^9.1.1"
   }
 }
