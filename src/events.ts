@@ -1,5 +1,6 @@
 import { Client, Message } from 'discord.js';
 import { commands } from './commands';
+import { tasks } from './tasks';
 
 const COMAND_LOOKUP = {
   '!help': (msg: Message) => msg.channel.send(commands.getHelp()),
@@ -8,7 +9,10 @@ const COMAND_LOOKUP = {
   '!game': async (msg: Message, name: string) => msg.channel.send(await commands.getGame(name)),
 };
 
-export const onReady = (client: Client) => console.log(`Logged in as ${client.user?.tag}!`);
+export const onReady = (client: Client) => {
+  console.log(`Logged in as ${client.user?.tag}!`);
+  setInterval(async () => await tasks.checkGame(client), 20 * 60 * 1000);
+};
 
 export const onMessage = async (msg: Message) => {
   if (msg.author.bot) return;

@@ -20,9 +20,12 @@ export const getCurrentRank = async (name: string) => {
   return `Summoner ${summonerName} is in ${tier} ${rank} (${leaguePoints} point${leaguePoints === 1 ? '' : 's'})`;
 };
 
-export const getGameStatus = async (name: string) => {
+export const getIsPlaying = async (name: string) => {
   const { id } = await riotApi.getSummonerByName(name);
-  const isGameActive = await riotApi.getActiveGameBySummonerId(id);
+  return riotApi.getActiveGameBySummonerId(id);
+};
 
+export const getGameStatus = async (name: string) => {
+  const isGameActive = await getIsPlaying(name);
   return `Summoner ${name} ${isGameActive ? 'is' : 'is not'} currenly playing`;
 };
