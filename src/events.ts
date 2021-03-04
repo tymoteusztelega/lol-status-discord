@@ -13,8 +13,8 @@ export const onReady = (client: Client) => console.log(`Logged in as ${client.us
 export const onMessage = async (msg: Message) => {
   if (msg.author.bot) return;
   const [command, args] = msg.content.split('|');
-  const action = COMAND_LOOKUP[command.trim() as keyof typeof COMAND_LOOKUP];
+  const action = COMAND_LOOKUP[(command || '').trim() as keyof typeof COMAND_LOOKUP];
 
   if (!action) return;
-  await action(msg, args.trim());
+  await action(msg, (args || '').trim());
 };
