@@ -7,6 +7,10 @@ const COMAND_LOOKUP = {
   '!status': async (msg: Message, name: string) => msg.channel.send(await commands.getMatch(name)),
   '!rank': async (msg: Message, name: string) => msg.channel.send(await commands.getRank(name)),
   '!game': async (msg: Message, name: string) => msg.channel.send(await commands.getGame(name)),
+  '!time': async (msg: Message, name: string) => {
+    msg.channel.send('Kalkulatoring...');
+    msg.channel.send(await commands.getTime(name));
+  },
 };
 
 export const onReady = (client: Client) => {

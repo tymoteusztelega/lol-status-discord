@@ -5,11 +5,15 @@ import { getIsPlaying } from './controller';
 import { config } from './config';
 
 const checkGame = async (client: Client) => {
-  const isPlaying = await getIsPlaying(config.MAIN_RESEARCH_OBJECT);
+  try {
+    const isPlaying = await getIsPlaying(config.MAIN_RESEARCH_OBJECT);
 
-  if (isPlaying) {
-    const channel = client.channels.cache.get(config.BOT_TEST_CHANNEL || '') as TextChannel;
-    channel?.send(`${config.MAIN_RESEARCH_OBJECT} is in game!`);
+    if (isPlaying) {
+      const channel = client.channels.cache.get(config.BOT_TEST_CHANNEL || '') as TextChannel;
+      channel?.send(`${config.MAIN_RESEARCH_OBJECT} is in game!`);
+    }
+  } catch (_) {
+    console.log(`Error in check game task`);
   }
 };
 

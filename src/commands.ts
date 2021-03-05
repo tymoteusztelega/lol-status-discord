@@ -1,4 +1,4 @@
-import { getCurrentRank, getGameStatus, getLastMatch } from './controller';
+import { getCurrentRank, getGameStatus, getLastMatch, getTimeSpentLastWeek } from './controller';
 
 const getMatch = (name: string) => {
   if (!name) return 'Name was not provided.';
@@ -15,6 +15,11 @@ const getGame = (name: string) => {
   return getGameStatus(name);
 };
 
+const getTime = (name: string) => {
+  if (!name) return 'Name was not provided.';
+  return getTimeSpentLastWeek(name);
+};
+
 const getHelp = () => {
   return 'Available commands:\n1. !status|{summoner name}\n2. !rank|{summoner name}\n3. !game|{summoner name}';
 };
@@ -24,4 +29,5 @@ export const commands = {
   getRank,
   getHelp,
   getGame,
+  getTime,
 };

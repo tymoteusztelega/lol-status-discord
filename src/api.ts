@@ -52,6 +52,7 @@ export interface ParticipantDTO {
 }
 
 export interface MatchDTO {
+  gameDuration: number;
   teams: TeamStatsDTO[];
   participants: ParticipantDTO[];
 }
@@ -81,12 +82,13 @@ export class RiotApi {
   }
 
   public getMatchById(matchId: number) {
+    console.log('GET MATCH', new Date().toString());
     return this.api.get<MatchDTO>(`/match/v4/matches/${matchId}`).then((res) => res.data);
   }
 
-  public getMatchList(accountId: string) {
+  public getMatchList(accountId: string, queryParams = '') {
     return this.api
-      .get<MatchListDTO>(`/match/v4/matchlists/by-account/${accountId}?endIndex=10`)
+      .get<MatchListDTO>(`/match/v4/matchlists/by-account/${accountId}${queryParams}`)
       .then((res) => res.data);
   }
 
