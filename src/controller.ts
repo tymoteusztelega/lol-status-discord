@@ -48,10 +48,10 @@ export const getGameStatus = async (name: string) => {
   }
 };
 
-export const getTimeSpentLastWeek = async (name: string) => {
+export const getTimeSpentLastWeek = async (name: string, days: number) => {
   try {
     const { accountId } = await riotApi.getSummonerByName(name);
-    const beginTime = moment().subtract(7, 'd').utc();
+    const beginTime = moment().subtract(days, 'd').utc();
     const { matches } = await riotApi.getMatchList(accountId, `?beginTime=${beginTime}`);
 
     const delays = Array.from({ length: matches.length }).map((_, i) => i * 200);
@@ -70,9 +70,8 @@ export const getTimeSpentLastWeek = async (name: string) => {
     const minutes = Math.floor(secondsSpentInGame / 60) - hours * 60;
     const seconds = secondsSpentInGame - hours * 3600 - minutes * 60;
 
-    return `${name} played ${matches.length} matches last week. Time spent: ${hours}h ${minutes}m ${seconds}s`;
+    return `${name} played ${matches.length} matches last ${days} days. Time spent: ${hours}h ${minutes}m ${seconds}s`;
   } catch (e) {
-    console.log(e);
     return handleError(e);
   }
 };
